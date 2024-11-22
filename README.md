@@ -94,6 +94,9 @@ será feito a recarga.
 
 Para criação do dashboard, foi necessário criar alguns laços pelo Node-RED
 
+![Node-RED](imagens/FluxoNode.png)
+
+Note que, alguns laços não são ligados diretamente no esquema pois viria de uma integração de bando de dados / API etc.
 
 
 
