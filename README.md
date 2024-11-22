@@ -1,5 +1,16 @@
 # GS_IOT
 
+# Sobre o projeto
+Descrição
+VoltUp é um aplicativo inovador que revoluciona a forma como você experiencia a mobilidade elétrica.
+Com o VoltUp, encontrar estações de carregamento, planejar rotas e conectar-se com outros entusiastas de veículos elétricos nunca foi tão fácil.
+
+## Funcionalidades Principais
+  * Localizador de estações, verificando se o local está apto para uso
+  * Planejamento de rotas, traçando o melhor trajeto para ir até o local
+  * Perfil personalizado, podendo ver ultimas vezes e locais em que carregou seu veículo
+    
+
 # Pré requisitos
 
 Para executar a solução, primeiramente é necessário ter a instalação do Node.js e do Node-RED na máquina.
