@@ -1,0 +1,371 @@
+[
+    {
+        "id": "e12dec4e6df578b1",
+        "type": "tab",
+        "label": "Fluxo 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "13e805be38321a7c",
+        "type": "ui_text",
+        "z": "e12dec4e6df578b1",
+        "group": "80ad29c17db8756f",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Temperatura no local de carregamento (ºC)",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 790,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "e40613defcbb8c79",
+        "type": "mqtt in",
+        "z": "e12dec4e6df578b1",
+        "name": "",
+        "topic": "WOKWI_DHT",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3151dd3ffb7365b1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 350,
+        "y": 140,
+        "wires": [
+            [
+                "13e805be38321a7c",
+                "9efc80c787f06d05"
+            ]
+        ]
+    },
+    {
+        "id": "9efc80c787f06d05",
+        "type": "ui_gauge",
+        "z": "e12dec4e6df578b1",
+        "name": "",
+        "group": "80ad29c17db8756f",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "-40",
+        "max": "80",
+        "colors": [
+            "#006eb3",
+            "#e6c700",
+            "#a01c1c"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 670,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "fc85c55a1c39315e",
+        "type": "mqtt in",
+        "z": "e12dec4e6df578b1",
+        "name": "",
+        "topic": "WOKWI_DIST",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "3151dd3ffb7365b1",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 350,
+        "y": 240,
+        "wires": [
+            [
+                "bb3df18395ddbf07"
+            ]
+        ]
+    },
+    {
+        "id": "bb3df18395ddbf07",
+        "type": "function",
+        "z": "e12dec4e6df578b1",
+        "name": "Converçao STR > INT",
+        "func": "var numero = parseInt(msg.payload);  // Converte a string em número inteiro\nmsg.payload = numero;  // Atribui o número convertido a msg.payload\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 260,
+        "wires": [
+            [
+                "0b220138964712b7"
+            ]
+        ]
+    },
+    {
+        "id": "0b220138964712b7",
+        "type": "function",
+        "z": "e12dec4e6df578b1",
+        "name": "Verificando local ",
+        "func": "if(msg.payload<=40)\n    msg.payload = \"Local ocupado\"\nelse\n    msg.payload = \"Local vago\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 840,
+        "y": 260,
+        "wires": [
+            [
+                "6d7fa4ab29fdacaf"
+            ]
+        ]
+    },
+    {
+        "id": "6d7fa4ab29fdacaf",
+        "type": "ui_text",
+        "z": "e12dec4e6df578b1",
+        "group": "80ad29c17db8756f",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Status: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1020,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "e536129b872add00",
+        "type": "ui_worldmap",
+        "z": "e12dec4e6df578b1",
+        "group": "80ad29c17db8756f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Mapa",
+        "lat": "-23.558472",
+        "lon": "-46.627325",
+        "zoom": "15",
+        "layer": "OSMC",
+        "cluster": "",
+        "maxage": "",
+        "usermenu": "show",
+        "layers": "hide",
+        "panit": "false",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "true",
+        "coords": "none",
+        "showgrid": "false",
+        "showruler": "false",
+        "allowFileDrop": "false",
+        "path": "/worldmap",
+        "overlist": "DR,CO",
+        "maplist": "OSMG,OSMC,EsriT,EsriO,EsriDG",
+        "mapname": "",
+        "mapurl": "",
+        "mapopt": "",
+        "mapwms": false,
+        "x": 850,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "9da80ff54d3efbaf",
+        "type": "function",
+        "z": "e12dec4e6df578b1",
+        "name": "Marcação",
+        "func": "msg.payload = [\n    { \"lat\": -23.5505, \"lon\": -46.6333, \"name\": \"São Paulo\" },\n    { \"lat\": -23.558472, \"lon\": -46.627325, \"name\": \"São Paulo\" }\n];\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 380,
+        "wires": [
+            [
+                "e536129b872add00"
+            ]
+        ]
+    },
+    {
+        "id": "1f18f986d2cf5a4f",
+        "type": "inject",
+        "z": "e12dec4e6df578b1",
+        "name": "Injeção",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 490,
+        "y": 380,
+        "wires": [
+            [
+                "9da80ff54d3efbaf"
+            ]
+        ]
+    },
+    {
+        "id": "2b59cd2927ebd946",
+        "type": "ui_form",
+        "z": "e12dec4e6df578b1",
+        "name": "",
+        "label": "Insira o modelo do veículo",
+        "group": "80ad29c17db8756f",
+        "order": 1,
+        "width": "12",
+        "height": "2",
+        "options": [
+            {
+                "label": "",
+                "value": "",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "": ""
+        },
+        "payload": "",
+        "submit": "Confirmar",
+        "cancel": "Cancelar",
+        "topic": "topic",
+        "topicType": "msg",
+        "splitLayout": "",
+        "className": "",
+        "x": 390,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "355143e30981a794",
+        "type": "ui_spacer",
+        "z": "e12dec4e6df578b1",
+        "name": "spacer",
+        "group": "ecd5bfefb3b13275",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "60bcdbb2dd192c03",
+        "type": "ui_spacer",
+        "z": "e12dec4e6df578b1",
+        "name": "spacer",
+        "group": "4c8149d247d93721",
+        "order": 1,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "80ad29c17db8756f",
+        "type": "ui_group",
+        "name": "Locais com carregador",
+        "tab": "f0d5ee735ffad614",
+        "order": 1,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "3151dd3ffb7365b1",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "test.mosquitto.org",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "ecd5bfefb3b13275",
+        "type": "ui_group",
+        "name": "Valores",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "4c8149d247d93721",
+        "type": "ui_group",
+        "name": "Informações de cargas antigas",
+        "tab": "",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "f0d5ee735ffad614",
+        "type": "ui_tab",
+        "name": "Todos os locais",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
