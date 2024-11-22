@@ -65,6 +65,11 @@ verificar qual temperatura está no local onde será feito a carga no carro, iss
 (para maioria dos carros elétricos, se considera superior a 30ºC) pode causar perda de desempenho e durabilidade, pois como naturalmente
 o carra aquece ao ser carregado, com a temperatura ambiente alta, pode-se ter problemas de funcionamento.
 
+# Explicação geral de funcionamento.
+
+Para começar a entender como o programa funcina, primeiro daremos uma olhada na imagem do esquema desenvolvido em arduino.
+
+
 
 
 [1]: https://www.freecodecamp.org/portuguese/news/como-instalar-o-node-js-e-o-npm-no-windows/
