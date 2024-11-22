@@ -69,6 +69,32 @@ o carra aquece ao ser carregado, com a temperatura ambiente alta, pode-se ter pr
 
 Para começar a entender como o programa funcina, primeiro daremos uma olhada na imagem do esquema desenvolvido em arduino.
 
+![Desenho ardino](imagens/Desenho.png) 
+
+Nele, estamos utilizando:
+
+1 placa ESP32, cérebro do projeto;
+1 sensor DHT22, para medição de temperatura;
+1 sensor de distância ultrassonico, para verificar se existe um não um carro no local;
+2 leds, utilizados para saber se a conexão com wifi e com servitor mtqq foi estabelecida e
+2 resistores, para os leds.
+
+O funcionamento é bem simples, executando o projeto e abrindo o dashboard, podemos fazer algumas verificações.
+
+![Localização](imagens/Localização.png)
+
+Na parte superior, temos um campo para que seja digitado o modelo do carro, já que, pode haver diferença nos conectores.
+Abaixo, temos um mapa, mostrando um local hipotético onde existiria um carregador para veículo elétrico.
+Em teoria, a pessoa clica no ponto em que aparece para fazer a verificação do status
+
+![Status](imagens/Status.png)
+
+No status, podemos verificar se a "vaga" está ocupada ou não, e logo abaixo, é mostrado a temperatura que está no local onde
+será feito a recarga.
+
+Para criação do dashboard, foi necessário criar alguns laços pelo Node-RED
+
+
 
 
 
